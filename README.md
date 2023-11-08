@@ -1,6 +1,6 @@
 # phy
 
-Integrated [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) inspired by
+[RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) inspired by
 [Pat Hayes](https://en.wikipedia.org/wiki/Pat_Hayes),
 [Patrick Hochstenbach](https://patrickhochstenbach.net/) and
 [EYE](https://eyereasoner.github.io/eye/).
