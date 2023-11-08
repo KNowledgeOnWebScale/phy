@@ -1,0 +1,35 @@
+#!/bin/bash
+
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+NORMAL="\e[0;39m"
+
+OK=0
+FAILED=0
+
+echo -e "${YELLOW}Running phy/test${NORMAL}"
+echo ""
+
+pushd ./examples > /dev/null
+for f in *.pl
+do
+    tpl -g run ../phy.pl $f | tee out/$f.out
+    if [[ $(git diff out/$f.out | wc -l) -ne 0 ]]; then
+        echo -e "${RED}${f} FAILED${NORMAL}"
+        ((FAILED++))
+    else
+        echo -e "${GREEN}${f} OK${NORMAL}"
+        ((OK++))
+    fi
+    echo ""
+done
+popd  > /dev/null
+
+echo -e "Tests: ${GREEN}${OK} OK${NORMAL} ${RED}${FAILED} FAILED${NORMAL}"
+
+if [[ ${FAILED} -eq 0 ]]; then
+    exit 0
+else
+    exit 2
+fi
